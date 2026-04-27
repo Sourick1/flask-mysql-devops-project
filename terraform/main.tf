@@ -40,7 +40,7 @@ resource "aws_subnet" "subnet2" {
 }
 
 resource "aws_db_subnet_group" "db_subnet" {
-  name = "devops-db-subnet"
+  name = "name = "devops-db-subnet-1""
 
   subnet_ids = [
     aws_subnet.subnet1.id,
