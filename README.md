@@ -23,7 +23,7 @@ Client → Web Browser → EC2 Instance (Dockerized Flask App) → AWS RDS (MySQ
 
 ### 1. Clone Repo
 
-git clone 
+git clone https://github.com/Sourick1/flask-mysql-devops-project.git
 cd flask-mysql-devops-project
 
 2. Setup Infrastructure (Terraform)
