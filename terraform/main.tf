@@ -20,7 +20,7 @@ resource "aws_subnet" "subnet1" {
   cidr_block              = "10.0.1.0/24"
   map_public_ip_on_launch = true
 
-  availability_zone = "ap-south-1a"   # 👈 ADD THIS
+  availability_zone = "ap-south-1a"   
 
   tags = {
     Name = "devops-subnet"
@@ -40,7 +40,7 @@ resource "aws_subnet" "subnet2" {
 }
 
 resource "aws_db_subnet_group" "db_subnet" {
-  name = "name = "devops-db-subnet-1""
+  name = "name = "devops-db-subnet-1"
 
   subnet_ids = [
     aws_subnet.subnet1.id,
