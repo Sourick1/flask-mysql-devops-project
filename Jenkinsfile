@@ -56,34 +56,26 @@ pipeline {
                         passwordVariable: "PASS"
                     )]) {
 
-                        sh """
+                       sh """
 ssh -o StrictHostKeyChecking=no ubuntu@43.204.216.179 << EOF
 
 cd /home/ubuntu || exit
 
-if [ ! -d "flask-mysql-docker-app" ]; then
+if [ ! -d "flask-mysql-devops-project" ]; then
     git clone https://github.com/Sourick1/flask-mysql-devops-project.git
 fi
 
-cd flask-mysql-docker-app
+cd flask-mysql-devops-project
 git pull origin main
 
-cp .env.example .env || true
+docker rm -f flask-app || true
+docker system prune -f || true
 
-echo "Cleaning old containers..."
-docker compose down -v || true
-docker rm -f \$(docker ps -aq) || true
-
-echo "Docker login..."
 echo "$PASS" | docker login -u "$USER" --password-stdin
 
-echo "Pulling latest image..."
 docker pull sourick1/flask-mysql-docker-app:latest
 
-echo "Starting containers..."
-docker compose up -d
-
-echo "Deployment Completed Successfully"
+docker run -d --name flask-app -p 5000:5000 sourick1/flask-mysql-docker-app:latest
 
 EOF
 """
