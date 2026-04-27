@@ -25,12 +25,18 @@ Client → Web Browser → EC2 Instance (Dockerized Flask App) → AWS RDS (MySQ
 ```bash
 git clone https://github.com/Sourick1/flask-mysql-devops-project.git
 cd flask-mysql-devops-project
+
+
 2. Setup Infrastructure (Terraform)
 cd terraform
 terraform init
 terraform apply
+
+
 3. Build Docker Image
 docker build -t flask-app .
+
+
 4. Run Container
 docker run -d -p 5000:5000 \
 -e DB_HOST=<RDS_ENDPOINT> \
@@ -38,8 +44,11 @@ docker run -d -p 5000:5000 \
 -e MYSQL_PASSWORD=password123 \
 -e MYSQL_DATABASE=mydb \
 flask-app
+
+
 5. Access Application
 http://<EC2_PUBLIC_IP>:5000
+
 
 ✅ Features
 Full cloud infrastructure using Terraform
