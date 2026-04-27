@@ -145,6 +145,9 @@ curl -L "https://github.com/docker/compose/releases/download/v2.20.2/docker-comp
 chmod +x /usr/local/bin/docker-compose
 EOF
 
+lifecycle {
+  ignore_changes = [user_data]
+}
   tags = {
     Name = "DevOps-EC2"
   }
